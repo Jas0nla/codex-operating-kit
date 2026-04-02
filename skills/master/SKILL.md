@@ -1,13 +1,13 @@
 ---
 name: Master
-description: Use as the private workflow router when a request may touch custom local setup, private skills, recurring operating environments, or known team workflows. Master routes to the most specific local skill first and prefers known helpers, memory, and entrypoints over ad hoc exploration.
+description: Use as the private workflow router when a request may touch custom local setup, private skills, recurring operating environments, or known team workflows. Master routes to the most specific local skill first, applies private delegation refinement, and prefers known helpers, memory, and entrypoints over ad hoc exploration.
 metadata:
   short-description: Route private workflows to the right local skill first
 ---
 
 # Master
 
-`Master` is the global task-entry router for private workflow logic.
+`Master` is the shared router for private workflow logic and private delegation refinement.
 
 Use it as the first routing check for any new thread that may involve custom local setup, known private environments, repeated operating patterns, or a workflow that already has a dedicated skill.
 
@@ -32,7 +32,8 @@ At the start of a new thread:
 2. Route to the most specific private skill first.
 3. Prefer known local scripts, env files, helpers, IDs, and memory before generic exploration.
 4. Treat generic tools such as browser automation or raw shell exploration as fallback only.
-5. Prevent repeated wheel-rebuilding when a private workflow is already documented.
+5. Govern private-workflow-specific delegation refinements after the global baseline from `AGENTS.md`.
+6. Prevent repeated wheel-rebuilding when a private workflow is already documented.
 
 ## Hard Routing Rule
 
@@ -109,10 +110,72 @@ For private-environment work, use this preflight order:
 1. Decide whether the request may touch private workflow logic or private environment.
 2. If yes or uncertain, read `Master`.
 3. Read `rules.md`.
-4. Read the matching topic memory when one exists.
-5. Read the most specific private skill.
-6. Only then do extra exploration.
-7. Only after the private path is exhausted may generic tools become primary.
+4. Read `skills/master/LOCAL.md` when it exists.
+5. Read the matching topic memory when one exists.
+6. Read the most specific private skill.
+7. Only then do extra exploration.
+8. Only after the private path is exhausted may generic tools become primary.
+
+## Local Overlay
+
+Use `skills/master/LOCAL.md` as the installer-preserved local overlay for private refinements.
+
+Use the local overlay for:
+
+- environment-specific route-table details
+- private helper or entrypoint precedence
+- private delegation refinements for known local workflows
+- narrow local policy additions that should survive shared-layer upgrades
+
+Do not use the local overlay for:
+
+- durable facts that belong in `memory.md` or `memory/topics/*.md`
+- tokens, secrets, usernames, or private credentials
+- run logs or daily troubleshooting notes
+- replacing the shared `Master` entirely
+
+If shared rules and local overlay rules conflict:
+
+- `AGENTS.md` keeps the global delegation baseline
+- shared `Master` defines shared private-workflow policy
+- `LOCAL.md` may narrow private workflow behavior
+- `LOCAL.md` must not loosen the global delegation baseline
+
+## Private Delegation Refinement
+
+`Master` is not the only source of delegation policy anymore.
+
+`AGENTS.md` owns the global delegation baseline for every thread.
+`Master` adds private-workflow-specific delegation refinement after a thread has entered the private path.
+
+Use private delegation refinement for:
+
+- extra restrictions for known private workflows
+- route precedence between private helpers and private skills
+- stricter ownership boundaries for private environments
+- private memory-placement rules for delegated work
+
+Do not use private delegation refinement to:
+
+- loosen the global single-agent-first baseline
+- bypass route-before-delegate
+- allow conflicting write ownership
+- treat transient delegated output as durable memory
+
+### Result Handling Rules
+
+- The main agent stays accountable for the task outcome.
+- Sub-agents should return findings, local implementations, or verification results.
+- The main agent integrates, reconciles, and presents final output.
+- Only durable lessons may be promoted into long-term memory.
+
+### Memory Handling For Delegated Work
+
+- durable delegation heuristics -> `rules.md`
+- domain-specific durable delegation lessons -> `memory/topics/<domain>.md`
+- run-local delegated exploration -> `memory/daily/YYYY-MM-DD.md`
+- automation-local delegated history -> `automations/<id>/memory.md`
+- transient delegated output -> do not store in long-term memory
 
 ## Terminal Hygiene
 
@@ -269,6 +332,7 @@ Do not:
 - start with browser automation when a local API, helper, or script path exists
 - treat missing tool injection as meaning the system lacks that capability
 - ignore known local entrypoints and rediscover them from scratch
+- delegate work before checking whether a known local path already exists
 
 ## When Not to Use Master
 

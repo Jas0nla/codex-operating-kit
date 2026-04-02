@@ -1,14 +1,60 @@
 # Agent Operating Layer
 
-`Agent Operating Layer` is a team-shareable operating layer for Codex-style agent environments.
+`Agent Operating Layer` is a shared operating layer for Codex environments.
 
-It separates reusable workflow logic from machine-local private facts.
+This repository does not implement a new agent runtime. It defines how Codex should enter threads, route private workflows, govern memory, and decide when multi-agent delegation is appropriate.
+
+## V2.1 Positioning
+
+`Agent Operating Layer` exists to optimize Codex's operating logic:
+
+- thread entry and preflight routing
+- global delegation guardrails for every thread
+- private workflow routing through `$master`
+- private delegation refinement for known local workflows
+- memory placement and promotion rules
+
+It does not:
+
+- replace Codex's underlying runtime
+- implement a separate execution engine
+- store machine-local secrets, hostnames, tokens, or daily run logs
+
+## Codex Execution Model
+
+Codex works through a main agent plus optional delegated sub-agents.
+
+- The main agent owns the critical path, final judgment, and final user-facing output.
+- Sub-agents are optional workers used for bounded exploration, disjoint implementation, or sidecar verification.
+- Delegation is not the default mode. The default is single-agent execution.
+- The global delegation baseline applies to every thread, including generic work.
+- Shared rules live in this repository. Private facts and private overlays stay in each user's local `~/.codex`.
+
+The default policy is `single-agent first, conservative delegation second`.
+
+## Operating Contracts
+
+The shared layer is organized around six contracts:
+
+- `entry contract`
+  - `AGENTS.md` decides whether a thread must enter `$master` before work begins.
+- `global delegation contract`
+  - `AGENTS.md` also defines the minimum delegation baseline that every thread must follow.
+- `routing contract`
+  - `skills/master/SKILL.md` decides which skill, helper, memory file, or entrypoint should be used first for private workflow threads.
+- `private delegation refinement contract`
+  - `skills/master/SKILL.md` defines private-workflow-specific delegation refinements after a thread enters `$master`.
+- `memory contract`
+  - `memory/README.md` and `rules.md` decide what becomes durable knowledge, what stays local to a day or automation, and what should not be stored.
+- `install/privacy contract`
+  - `install.sh` installs shared files while preserving private machine-local files in `~/.codex`, including the local overlay for private route-table details.
 
 ## What This Repository Contains
 
-- `AGENTS.md`: team-wide thread entry policy
-- `skills/master/`: shared private-workflow router
-- `memory/README.md`: memory governance rules
+- `AGENTS.md`: thread-entry policy and global delegation baseline for Codex
+- `skills/master/`: shared routing and private-refinement policy source of truth
+- `skills/master/LOCAL.template.md`: starter template for installer-preserved private route and delegation refinements
+- `memory/README.md`: memory governance and promotion rules
 - `memory/rules.md`: concise reusable operating rules
 - `memory/*.template.md`: starter templates for machine-local private memory
 - `docs/`: architecture and migration guidance
@@ -17,12 +63,14 @@ It separates reusable workflow logic from machine-local private facts.
 ## Mental Model
 
 - `Project / Repo / Branch`: file and version layer
-- `Thread`: task conversation and execution context
-- `AGENTS.md`: entry gate for new threads
-- `Master`: workflow router
-- `memory`: durable facts, daily notes, and domain memory
+- `Thread`: one task-focused Codex execution context
+- `AGENTS.md`: entry gate plus global delegation baseline
+- `Master`: private workflow router and private delegation refinement hub
+- `LOCAL.md`: local overlay for private routing and delegation details
+- `memory`: durable facts, daily notes, and topic memory
+- `sub-agents`: optional delegated workers under main-agent control
 
-See [architecture.md](/Users/jason/Documents/project/agentOperatingLayer/docs/architecture.md) for the full diagram.
+See [docs/architecture.md](docs/architecture.md) for the full layer diagram.
 
 ## What Must Stay Private
 
@@ -53,7 +101,7 @@ The installer:
 
 - copies shared files into the target Codex home
 - preserves existing private files
-- creates starter private-memory files only when missing
+- creates starter private-memory files and local overlay files only when missing
 - prints a checklist of values the user still needs to fill in locally
 
 ## Local File Ownership
@@ -68,6 +116,7 @@ Shared files installed from this repository:
 
 Private files each user owns locally:
 
+- `skills/master/LOCAL.md`
 - `memory.md`
 - `memory/topics/*.md`
 - `memory/daily/*.md`
@@ -77,5 +126,6 @@ Private files each user owns locally:
 
 1. Maintain shared operating logic in this repository.
 2. Install it into each team member's `~/.codex`.
-3. Let each user maintain their own private facts locally.
-4. Update templates when new reusable domains appear.
+3. Let each user maintain their own private facts and private overlay refinements locally.
+4. Update the shared routing, global delegation, and memory policies here.
+5. Update templates when new reusable domains appear.

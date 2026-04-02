@@ -39,6 +39,7 @@ copy_shared "$SCRIPT_DIR/skills/master/agents/openai.yaml" "$TARGET_ROOT/skills/
 copy_shared "$SCRIPT_DIR/memory/README.md" "$TARGET_ROOT/memory/README.md"
 copy_shared "$SCRIPT_DIR/memory/rules.md" "$TARGET_ROOT/rules.md"
 
+create_if_missing "$SCRIPT_DIR/skills/master/LOCAL.template.md" "$TARGET_ROOT/skills/master/LOCAL.md"
 create_if_missing "$SCRIPT_DIR/memory/memory.template.md" "$TARGET_ROOT/memory.md"
 create_if_missing "$SCRIPT_DIR/memory/topics/clickup.template.md" "$TARGET_ROOT/memory/topics/clickup.md"
 create_if_missing "$SCRIPT_DIR/memory/topics/raspberry.template.md" "$TARGET_ROOT/memory/topics/raspberry.md"
@@ -58,8 +59,9 @@ Preserved existing private files:
 $(if [[ ${#needs_attention[@]} -gt 0 ]]; then printf '  - %s\n' "${needs_attention[@]}"; else printf '  - none\n'; fi)
 
 You still need to fill in locally:
+  - skills/master/LOCAL.md with private route-table details and private delegation refinements
   - memory.md with real durable facts for this machine and user
   - memory/topics/*.md with domain-specific real values
-  - any private skills, helper paths, and environment-specific route-table details
+  - any private skills and helper paths that should stay machine-local
   - any automation-local memory under automations/<id>/memory.md
 EOF

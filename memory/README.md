@@ -7,14 +7,19 @@ Use this document to avoid creating overlapping `.md` files with mixed purposes.
 ## Layer Map
 
 - `AGENTS.md`
-  - purpose: thread-entry policy
-  - store here: "should this thread enter `$master` first?"
-  - do not store: machine facts, troubleshooting notes, domain details
+  - purpose: thread-entry policy and global delegation baseline
+  - store here: "should this thread enter `$master` first?" and minimum delegation guardrails for every thread
+  - do not store: machine facts, troubleshooting notes, domain details, private route-table details
 
 - `skills/master/SKILL.md`
-  - purpose: private workflow routing logic
-  - store here: route tables, routing priority, preflight order, memory placement policy
+  - purpose: private workflow routing logic and private delegation refinement
+  - store here: route tables, routing priority, preflight order, overlay rules, memory placement policy
   - do not store: long machine inventories or day-by-day logs
+
+- `skills/master/LOCAL.md`
+  - purpose: local overlay for private route-table details and private delegation refinements
+  - store here: environment-specific route-table details, private helper precedence, narrow local policy refinements
+  - do not store: durable facts that belong in memory files, secrets, tokens, or run logs
 
 - `rules.md`
   - purpose: short reusable constraints and anti-footguns
@@ -50,6 +55,7 @@ Choose the destination by stability:
 - durable but domain-specific -> `memory/topics/<domain>.md`
 - only useful for today or this run -> `memory/daily/YYYY-MM-DD.md`
 - only useful to one automation run stream -> `automations/<id>/memory.md`
+- transient delegated output that is not yet durable -> do not store in long-term memory
 
 ## Creation Rules
 
@@ -70,3 +76,26 @@ Promote information upward only after it has become stable:
 - daily note -> `memory.md` when it becomes cross-workflow infrastructure knowledge
 - automation memory -> topic/global memory when it becomes reusable outside that automation
 - long explanation -> `rules.md` only after compressing it into a short durable rule
+
+## Delegated Work Rules
+
+Codex may use sub-agents, but their output must follow the same memory discipline.
+
+- durable delegation heuristics -> `rules.md`
+- stable domain-specific delegation lessons -> `memory/topics/<domain>.md`
+- today's delegated exploration -> `memory/daily/YYYY-MM-DD.md`
+- automation-specific delegated history -> `automations/<id>/memory.md`
+- temporary, noisy, or unverified delegated findings -> do not promote
+
+Delegated work should not bypass normal promotion rules just because it came from a sub-agent.
+
+## What Does Not Belong In Memory
+
+Do not store route-table details or delegation refinements in `memory.md`.
+
+Use:
+
+- `skills/master/SKILL.md` for shared private-workflow policy
+- `skills/master/LOCAL.md` for installer-preserved local overlay policy
+
+Use memory files only for facts, not for routing or policy overlays.
