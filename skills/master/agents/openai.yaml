@@ -1,0 +1,7 @@
+interface:
+  display_name: "Master"
+  short_description: "Route private workflows to the right local skill first"
+  default_prompt: "Use $master to route this request into the matching private workflow, then follow the most specific local skill and memory rules first."
+
+policy:
+  allow_implicit_invocation: true
