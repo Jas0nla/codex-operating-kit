@@ -61,6 +61,7 @@ copy_shared "$SCRIPT_DIR/skills/modular-operating-layer/templates/board-state-ca
 copy_shared "$SCRIPT_DIR/skills/modular-operating-layer/templates/handoff-package.template.md" "$TARGET_ROOT/skills/modular-operating-layer/templates/handoff-package.template.md"
 copy_shared "$SCRIPT_DIR/skills/modular-operating-layer/templates/new-thread-starter.template.md" "$TARGET_ROOT/skills/modular-operating-layer/templates/new-thread-starter.template.md"
 copy_shared "$SCRIPT_DIR/skills/modular-operating-layer/templates/observability-status-card.template.md" "$TARGET_ROOT/skills/modular-operating-layer/templates/observability-status-card.template.md"
+copy_shared "$SCRIPT_DIR/skills/modular-operating-layer/templates/property-fact-packet.template.md" "$TARGET_ROOT/skills/modular-operating-layer/templates/property-fact-packet.template.md"
 copy_shared "$SCRIPT_DIR/skills/modular-operating-layer/templates/working-set.template.md" "$TARGET_ROOT/skills/modular-operating-layer/templates/working-set.template.md"
 copy_shared "$SCRIPT_DIR/agents/workflow_scout.toml" "$TARGET_ROOT/agents/workflow_scout.toml"
 copy_shared "$SCRIPT_DIR/agents/repo_researcher.toml" "$TARGET_ROOT/agents/repo_researcher.toml"

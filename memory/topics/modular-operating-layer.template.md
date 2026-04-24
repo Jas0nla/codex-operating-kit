@@ -25,6 +25,7 @@ This topic holds the OS-layer rules that make long-running modular work recovera
 - `Stable Fact`
 - `Working Set`
 - `Handoff Package`
+- `Property Fact Packet` for property-content tasks
 
 ## Fixed handoff shape
 
@@ -48,3 +49,17 @@ Do not store:
 - temporary guesses
 - noisy brainstorming fragments
 - unresolved contradictions without labels
+
+## Property Content Gate
+
+For property-content tasks such as `address + 做一期内容`, the required lane order is:
+
+`07-evaluation-observability -> 08-human-governance -> 01-content-creation -> 04-structure-coaching -> 02-sensitive-preflight`
+
+Fixed rules:
+
+- `07` owns fact accuracy
+- `08` owns `go / revise / stop`
+- `01` may not draft from unapproved claims
+- old local reports are reusable source surfaces, not current truth by default
+- user-provided materials and system materials must be merged into one labeled fact packet before drafting

@@ -59,7 +59,7 @@ If a more authoritative local memory source exists, prefer it over chat recollec
 
 ## Standard Objects
 
-This OS works through five required objects.
+This OS works through five required objects and one property-content gate object.
 
 ### `Task Identity`
 
@@ -97,6 +97,13 @@ A fact is stable only if it is:
 ### `Handoff Package`
 
 Use the fixed shape from `templates/handoff-package.template.md`.
+
+### `Property Fact Packet`
+
+Use the fixed shape from `templates/property-fact-packet.template.md` when the task is property-content work such as `address + 做一期内容`.
+
+This object is a gated fact package, not a creative draft.
+It must be completed before content creation is allowed to start.
 
 ### `Board Registry Entry`
 
@@ -159,6 +166,25 @@ Use this sequence:
 5. if there are `2+` separable lanes after the working set is bounded, route to `team-orchestrator`
 6. keep final integration, board updates, and user-facing closeout in the main agent
 
+## Property Content Entry Protocol
+
+Use this protocol when the task shape is effectively `address + 做一期内容`, even if the user asks for a draft immediately.
+
+Treat this as a `mixed business task`.
+
+Required flow:
+
+1. build a bounded working set
+2. route first to `07-evaluation-observability`
+3. require a completed `Property Fact Packet`
+4. route next to `08-human-governance`
+5. allow `01-content-creation` only if `governance_status = go`
+6. route to `04-structure-coaching`
+7. route to `02-sensitive-preflight`
+
+Do not allow the main agent to skip directly from raw source gathering into creative drafting.
+Do not allow `01-content-creation` to invent or upgrade claims beyond the approved fact packet.
+
 ## Multi-Agent Boundary
 
 When sub-agents are used:
@@ -167,6 +193,12 @@ When sub-agents are used:
 - include only the board state and source surfaces that agent needs
 - do not share unrelated board history
 - keep memory placement and final truth reconciliation in the main agent
+
+For property-content work:
+
+- `07-evaluation-observability` owns fact accuracy
+- `08-human-governance` owns go / revise / stop
+- `01-content-creation` may only write from approved claims
 
 ## Memory Write Discipline
 
@@ -206,6 +238,12 @@ Before calling a launch state stable enough to run, keep at least these four sig
 - the latest rework cause when one exists
 
 Use `templates/observability-status-card.template.md` as the shared shape.
+
+For property-content beta launch, also keep visible:
+
+- whether a fact packet exists
+- whether governance status is `go`, `revise`, or `stop`
+- whether source conflicts are still open
 
 ## Expected Result
 
