@@ -1,8 +1,8 @@
-# Agent Operating Layer
+# Codex Operating Kit
 
 [English README](./README.md)
 
-`Agent Operating Layer` 是一个给 Codex 环境使用的共享操作层。
+`Codex Operating Kit` 是一个给 Codex 环境使用的共享操作组件包。
 
 它保持入口栈足够轻：
 

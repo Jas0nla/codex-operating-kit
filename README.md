@@ -1,8 +1,8 @@
-# Agent Operating Layer
+# Codex Operating Kit
 
 [中文说明](./README.zh-CN.md)
 
-`Agent Operating Layer` is a shared operating layer for Codex environments.
+`Codex Operating Kit` is a shared operating kit for Codex environments.
 
 It keeps the entry stack thin:
 

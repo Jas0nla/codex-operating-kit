@@ -54,7 +54,7 @@ create_if_missing "$SCRIPT_DIR/memory/topics/winremote.template.md" "$TARGET_ROO
 create_if_missing "$SCRIPT_DIR/memory/topics/xhs.template.md" "$TARGET_ROOT/memory/topics/xhs.md"
 
 cat <<EOF
-Installed shared Agent Operating Layer into: $TARGET_ROOT
+Installed shared Codex Operating Kit into: $TARGET_ROOT
 
 Shared files copied:
 $(printf '  - %s\n' "${copied[@]}")

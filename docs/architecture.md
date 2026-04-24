@@ -5,7 +5,7 @@ This repository keeps the operating stack small and layered.
 ## Layer Diagram
 
 ```text
-Agent Operating Layer
+Codex Operating Kit
 ├─ File and Version Layer
 │  ├─ Project / Folder
 │  ├─ Repo
