@@ -1,20 +1,19 @@
----
-name: xhs-master-os
-description: Use for the Xiaohongshu Content Master operating layer: context budgeting, working-set routing, tiered memory, long-thread continuity, sub-agent context boundaries, and board-state handoff across threads.
+name: modular-operating-layer
+description: Use for a modular operating layer: context budgeting, working-set routing, tiered memory, long-thread continuity, sub-agent context boundaries, and board-state handoff across threads.
 metadata:
-  short-description: XHS context and continuity OS
+  short-description: Modular context and continuity OS
 ---
 
-# XHS Master OS
+# Modular Operating Layer
 
-Use this skill when the task belongs to the long-running `小红书内容创作大师` system and continuity, context control, board-state discipline, or multi-agent context boundaries matter more than raw transcript replay.
+Use this skill when a long-running modular system needs continuity, context control, board-state discipline, or multi-agent context boundaries more than raw transcript replay.
 
 This skill is an operating layer. It does not replace domain work such as content writing, sensitive-word checks, structure work, or publishing. Its job is to keep those lanes recoverable, bounded, and handoff-safe.
 
 ## Use When
 
 - the thread is growing long and the user wants durable continuity
-- the user wants a stable operating system for Xiaohongshu work across many sessions
+- the user wants a stable operating system for modular work across many sessions
 - multiple agents may be used and each one should only see the minimum relevant context
 - the user wants board-state tracking, working-set control, or handoff packaging
 - the user wants to avoid context-window blowups before the business boards are fully built
@@ -50,8 +49,8 @@ Do not pass entire long threads to sub-agents when a compact working set will do
 Use this order when recovering context:
 
 1. current request and immediately referenced artifacts
-2. `~/.codex/memory/topics/xhs-master-os.md`
-3. `~/.codex/memory/topics/xhs.md`
+2. `~/.codex/memory/topics/modular-operating-layer.md`
+3. the most relevant domain topic memory such as `~/.codex/memory/topics/xhs.md`
 4. the most specific workspace memory via `project-memory` when available locally
 5. current-thread handoff package if one exists
 6. raw transcript only as the last fallback
@@ -145,7 +144,7 @@ Promote only durable OS facts such as:
 - continuity thresholds
 - accepted handoff package shape
 - stable board registry fields
-- named operating conventions for this Xiaohongshu system
+- named operating conventions for the modular system
 
 Do not write:
 
@@ -170,7 +169,7 @@ When this skill responds operationally, default to:
 
 After using this skill, the agent should be able to:
 
-- continue the Xiaohongshu system without replaying giant thread history
+- continue a modular system without replaying giant thread history
 - hand off safely into a new thread
 - keep sub-agents bounded to the right context
 - preserve durable operating facts in the correct memory layer

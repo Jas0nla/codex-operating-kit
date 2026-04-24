@@ -1,5 +1,0 @@
-version: 1
-interface:
-  display_name: XHS Master OS
-  short_description: Protect the Xiaohongshu master thread with bounded context, tiered memory, and handoff-safe routing
-  default_prompt: "Use $xhs-master-os to operate the Xiaohongshu Content Master system with bounded working sets, safe handoffs, and controlled multi-agent context."

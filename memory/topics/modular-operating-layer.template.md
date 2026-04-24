@@ -1,14 +1,14 @@
-# XHS Master OS Topic Memory
+# Modular Operating Layer Topic Memory
 
-Use this file for durable operating facts about the `小红书内容创作大师 OS`.
+Use this file for durable operating facts about the modular operating layer.
 
 ## Purpose
 
-This topic holds the OS-layer rules that make long-running Xiaohongshu work recoverable across threads.
+This topic holds the OS-layer rules that make long-running modular work recoverable across threads.
 
 ## Stable conventions
 
-- Primary skill: `~/.codex/skills/xhs-master-os/SKILL.md`
+- Primary skill: `~/.codex/skills/modular-operating-layer/SKILL.md`
 - Existing OS primitives:
   - `thread-continuity-guard`
   - `project-memory`
