@@ -1,0 +1,7 @@
+interface:
+  display_name: "Team Orchestrator"
+  short_description: "Ask once, then launch the smallest useful multi-agent roster"
+  default_prompt: "Use $team-orchestrator after local routing. If the task is a strong multi-lane candidate, ask one short confirmation question, then launch the smallest useful roster and keep the main agent responsible for integration and final output."
+
+policy:
+  allow_implicit_invocation: true

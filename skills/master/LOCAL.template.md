@@ -1,34 +1,21 @@
 # Local Master Overlay
 
-This file is a local overlay for `skills/master/SKILL.md`.
+This file keeps installer-preserved local route-table details that should survive shared-layer upgrades.
 
-Use it for private route-table details and private delegation refinements that must survive shared-layer upgrades.
-
-Store here:
-
-- environment-specific route-table details
-- private helper and entrypoint precedence
-- local routing notes for known private workflows
-- narrow private delegation refinements
-
-Do not store here:
-
-- tokens, secrets, usernames, or credentials
-- durable facts that belong in `memory.md`
-- domain-specific durable facts that belong in `memory/topics/*.md`
-- daily notes or run logs
-
-Rules:
-
-- This file supplements `skills/master/SKILL.md`; it does not replace it.
-- This file may narrow private workflow behavior.
-- This file must not relax the global delegation baseline from `AGENTS.md`.
-- If this file grows too broad, move repeated logic into a dedicated private skill instead.
-
-## Local Route-Table Details
+## Route table
 
 - Replace this section with environment-specific route-table details.
+- Keep the entries short and concrete.
+- Route to the most specific local skill before falling back to generic tools.
 
-## Local Delegation Refinements
+## Local precedence
 
-- Replace this section with private delegation refinements for known local workflows.
+- Replace this section with local route precedence rules.
+- Prefer workflow-specific skills over broad domain skills.
+- Prefer environment-specific skills over generic tools.
+
+## Local notes
+
+- Replace this section with narrow local routing notes.
+- Keep repeated workflow logic in dedicated skills instead of growing this file into a policy document.
+- Do not store secrets, tokens, usernames, or machine-only credentials here.

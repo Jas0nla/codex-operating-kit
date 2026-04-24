@@ -7,18 +7,23 @@ Use this document to avoid creating overlapping `.md` files with mixed purposes.
 ## Layer Map
 
 - `AGENTS.md`
-  - purpose: thread-entry policy and global delegation baseline
-  - store here: "should this thread enter `$master` first?" and minimum delegation guardrails for every thread
+  - purpose: thread-entry policy plus small global guardrails
+  - store here: "should this thread enter `$Master` first?" plus minimum shared delegation constraints
   - do not store: machine facts, troubleshooting notes, domain details, private route-table details
 
 - `skills/master/SKILL.md`
-  - purpose: private workflow routing logic and private delegation refinement
-  - store here: route tables, routing priority, preflight order, overlay rules, memory placement policy
+  - purpose: team-local routing logic
+  - store here: routing priority, route gates, fallback order, and final-review trigger
   - do not store: long machine inventories or day-by-day logs
 
+- `skills/team-orchestrator/SKILL.md`
+  - purpose: ask-once orchestration flow for strong multi-lane work
+  - store here: candidate test, confirmation rule, and shared roster choice
+  - do not store: private agent names, domain-specific route tables, or long policy narration
+
 - `skills/master/LOCAL.md`
-  - purpose: local overlay for private route-table details and private delegation refinements
-  - store here: environment-specific route-table details, private helper precedence, narrow local policy refinements
+  - purpose: local overlay for private route-table details
+  - store here: environment-specific route-table details, helper precedence, and narrow routing notes
   - do not store: durable facts that belong in memory files, secrets, tokens, or run logs
 
 - `rules.md`
@@ -89,13 +94,23 @@ Codex may use sub-agents, but their output must follow the same memory disciplin
 
 Delegated work should not bypass normal promotion rules just because it came from a sub-agent.
 
+## Verification Notes
+
+Verification evidence is part of execution, not a separate memory layer.
+
+- stable reusable verification commands or acceptance checks -> `rules.md` or `memory/topics/<domain>.md`
+- one-off verification output for this run -> `memory/daily/YYYY-MM-DD.md`
+- automation-run verification traces -> `automations/<id>/memory.md`
+- transient verification logs with no reusable lesson -> do not promote
+
 ## What Does Not Belong In Memory
 
-Do not store route-table details or delegation refinements in `memory.md`.
+Do not store route-table details or orchestration policy in `memory.md`.
 
 Use:
 
-- `skills/master/SKILL.md` for shared private-workflow policy
-- `skills/master/LOCAL.md` for installer-preserved local overlay policy
+- `skills/master/SKILL.md` for shared routing policy
+- `skills/team-orchestrator/SKILL.md` for shared ask-and-launch orchestration
+- `skills/master/LOCAL.md` for installer-preserved local route-table policy
 
 Use memory files only for facts, not for routing or policy overlays.

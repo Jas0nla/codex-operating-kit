@@ -6,6 +6,8 @@ TARGET_ROOT="${1:-$HOME/.codex}"
 
 mkdir -p "$TARGET_ROOT"
 mkdir -p "$TARGET_ROOT/skills/master/agents"
+mkdir -p "$TARGET_ROOT/skills/team-orchestrator/agents"
+mkdir -p "$TARGET_ROOT/agents"
 mkdir -p "$TARGET_ROOT/memory/topics"
 mkdir -p "$TARGET_ROOT/memory/daily"
 
@@ -36,6 +38,11 @@ create_if_missing() {
 copy_shared "$SCRIPT_DIR/AGENTS.md" "$TARGET_ROOT/AGENTS.md"
 copy_shared "$SCRIPT_DIR/skills/master/SKILL.md" "$TARGET_ROOT/skills/master/SKILL.md"
 copy_shared "$SCRIPT_DIR/skills/master/agents/openai.yaml" "$TARGET_ROOT/skills/master/agents/openai.yaml"
+copy_shared "$SCRIPT_DIR/skills/team-orchestrator/SKILL.md" "$TARGET_ROOT/skills/team-orchestrator/SKILL.md"
+copy_shared "$SCRIPT_DIR/skills/team-orchestrator/agents/openai.yaml" "$TARGET_ROOT/skills/team-orchestrator/agents/openai.yaml"
+copy_shared "$SCRIPT_DIR/agents/workflow_scout.toml" "$TARGET_ROOT/agents/workflow_scout.toml"
+copy_shared "$SCRIPT_DIR/agents/repo_researcher.toml" "$TARGET_ROOT/agents/repo_researcher.toml"
+copy_shared "$SCRIPT_DIR/agents/final_verifier.toml" "$TARGET_ROOT/agents/final_verifier.toml"
 copy_shared "$SCRIPT_DIR/memory/README.md" "$TARGET_ROOT/memory/README.md"
 copy_shared "$SCRIPT_DIR/memory/rules.md" "$TARGET_ROOT/rules.md"
 
@@ -59,9 +66,9 @@ Preserved existing private files:
 $(if [[ ${#needs_attention[@]} -gt 0 ]]; then printf '  - %s\n' "${needs_attention[@]}"; else printf '  - none\n'; fi)
 
 You still need to fill in locally:
-  - skills/master/LOCAL.md with private route-table details and private delegation refinements
+  - skills/master/LOCAL.md with private route-table details and local route notes
   - memory.md with real durable facts for this machine and user
   - memory/topics/*.md with domain-specific real values
-  - any private skills and helper paths that should stay machine-local
+  - any private skills, helper paths, and local confirmation wording that should stay machine-local
   - any automation-local memory under automations/<id>/memory.md
 EOF

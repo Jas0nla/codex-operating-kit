@@ -1,7 +1,7 @@
 interface:
   display_name: "Master"
-  short_description: "Route private workflows and apply private delegation refinement"
-  default_prompt: "Use $master to route this request into the matching private workflow, apply private delegation refinement after the global baseline, and follow the most specific local skill and memory rules first."
+  short_description: "Route team-local workflows into the most specific local skill first"
+  default_prompt: "Use $Master to route this request into the matching local workflow, then follow the most specific local skill, helper, memory rule, and entrypoint before generic exploration."
 
 policy:
   allow_implicit_invocation: true
