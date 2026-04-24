@@ -9,6 +9,7 @@ It keeps the entry stack thin:
 - `AGENTS.md`: thread entry plus a small global delegation baseline
 - `skills/master/SKILL.md`: team-local routing
 - `skills/team-orchestrator/SKILL.md`: ask once, then launch the smallest useful roster
+- `skills/modular-operating-layer/SKILL.md`: bounded-context and continuity OS for long-running modular systems
 - `skills/master/LOCAL.md`: installer-preserved local route table
 - `memory/rules.md`: short reusable anti-footguns
 
@@ -21,6 +22,7 @@ It includes:
 - a thin entry contract
 - a thin local router
 - a reusable orchestration skill
+- a reusable modular operating-layer skill
 - a small shared custom-agent roster
 - installation support for shared files and local overlays
 
@@ -75,6 +77,7 @@ The installer copies shared files, preserves private local overlays, and install
 - Keep entry behavior in `AGENTS.md`
 - Keep local routing in `skills/master/SKILL.md`
 - Keep ask-and-launch orchestration in `skills/team-orchestrator/SKILL.md`
+- Keep bounded-context modular continuity in `skills/modular-operating-layer/SKILL.md`
 - Keep private route-table details in `skills/master/LOCAL.md`
 - Keep short reusable rules in `memory/rules.md`
 - Keep durable facts in local memory files, not in the shared router

@@ -1,0 +1,5 @@
+version: 1
+interface:
+  display_name: Modular Operating Layer
+  short_description: Protect long-running modular systems with bounded context, tiered memory, and handoff-safe routing
+  default_prompt: "Use $modular-operating-layer to operate this modular system with bounded working sets, safe handoffs, and controlled multi-agent context."

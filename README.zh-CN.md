@@ -9,6 +9,7 @@
 - `AGENTS.md`：线程入口和少量全局协作约束
 - `skills/master/SKILL.md`：team-local 路由
 - `skills/team-orchestrator/SKILL.md`：问一次，再启动最小可用 roster
+- `skills/modular-operating-layer/SKILL.md`：给长期模块化系统用的 bounded-context / continuity OS
 - `skills/master/LOCAL.md`：安装后保留的本地 route table
 - `memory/rules.md`：高复用短规则和 anti-footguns
 
@@ -21,6 +22,7 @@
 - 一套轻量入口契约
 - 一个轻量本地路由器
 - 一个可复用的 orchestration skill
+- 一个可复用的模块化 operating-layer skill
 - 一套小而稳定的 shared custom-agent roster
 - 支持 shared files 和 local overlays 的安装脚本
 
@@ -79,6 +81,7 @@
 - 入口行为放在 `AGENTS.md`
 - 本地路由放在 `skills/master/SKILL.md`
 - ask-and-launch orchestration 放在 `skills/team-orchestrator/SKILL.md`
+- 模块化 bounded-context continuity 放在 `skills/modular-operating-layer/SKILL.md`
 - 私有 route-table 细节放在 `skills/master/LOCAL.md`
 - 高复用短规则放在 `memory/rules.md`
 - durable facts 放在本地 memory files，不放进 shared router
