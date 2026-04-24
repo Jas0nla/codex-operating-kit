@@ -1,5 +1,7 @@
 # Agent Operating Layer
 
+[中文说明](./README.zh-CN.md)
+
 `Agent Operating Layer` is a shared operating layer for Codex environments.
 
 It keeps the entry stack thin:
