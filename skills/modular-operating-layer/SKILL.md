@@ -102,6 +102,8 @@ Use the fixed shape from `templates/handoff-package.template.md`.
 
 Use the fixed shape from `templates/board-registry-entry.template.md` when a future business board is formally attached to this OS.
 
+The live registry for this installation should be maintained under `boards/`.
+
 ## Continuity Trigger Rules
 
 Use this policy:
@@ -116,6 +118,35 @@ If exact percentage is unavailable, infer risk from:
 - number of active sub-lanes
 - number of artifacts or versions being compared
 - amount of repeated history-loading
+
+## Beta Launch Mode
+
+Use beta launch mode when a board system has become runnable but is not yet production-complete.
+
+In beta launch mode:
+
+- keep board owners explicit
+- require bounded working sets before multi-agent use
+- require handoff packages for cross-thread continuation
+- keep observability at least at the board-status level
+- surface conflicts instead of silently overwriting them
+
+This is the correct default for a newly launched multi-board operating system.
+
+## Board Registry
+
+The board registry is the source of truth for the attached business boards.
+
+Each board entry should define:
+
+- `board_name`
+- `owner_agent`
+- `required_context`
+- `forbidden_context`
+- `success_signal`
+- `handoff_fields`
+
+Use the live entries under `boards/` instead of inventing board structure from memory.
 
 ## Routing Logic
 
@@ -164,6 +195,17 @@ When this skill responds operationally, default to:
 5. `Handoff Status`
 6. `Agent Roster`
 7. `Next Actions`
+
+## Observability Minimum
+
+Before calling a launch state stable enough to run, keep at least these four signals visible:
+
+- current board stage
+- whether owner is explicit
+- whether the last handoff recovered correctly
+- the latest rework cause when one exists
+
+Use `templates/observability-status-card.template.md` as the shared shape.
 
 ## Expected Result
 
