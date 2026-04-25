@@ -21,6 +21,7 @@
 - 一套轻量入口契约
 - 一个轻量本地路由器
 - 一个可复用的 orchestration skill
+- 一个可复用的房源到小红书工作流 skill
 - 一套小而稳定的 shared custom-agent roster
 - 支持 shared files 和 local overlays 的安装脚本
 

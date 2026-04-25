@@ -1,0 +1,7 @@
+interface:
+  display_name: "UpToXHS"
+  short_description: "Turn property research into content-library-synced XHS content"
+  default_prompt: "Use $uptoxhs to research the property, build local assets, sync the result into the team's content library, and only then continue to Xiaohongshu."
+
+policy:
+  allow_implicit_invocation: true

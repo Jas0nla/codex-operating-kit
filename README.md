@@ -21,6 +21,7 @@ It includes:
 - a thin entry contract
 - a thin local router
 - a reusable orchestration skill
+- a reusable property-to-Xiaohongshu workflow skill
 - a small shared custom-agent roster
 - installation support for shared files and local overlays
 
